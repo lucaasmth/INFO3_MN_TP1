@@ -4,33 +4,8 @@
 # Object files
 *.o
 *.ko
-*.obj
-*.elf
+*.obj# all: test_abr
 
-# Linker output
-*.ilk
-*.map
-*.exp
-
-# Precompiled Headers
-*.gch
-*.pch
-
-# Libraries
-*.lib
-*.a
-*.la
-*.lo
-
-# Shared objects (inc. Windows DLLs)
-*.dll
-*.so
-*.so.*
-*.dylib
-
-# Executables
-*.exe
-*.out
 *.app
 *.i*86
 *.x86_64
@@ -52,4 +27,5 @@ Mkfile.old
 dkms.conf
 
 test_abr
-
+test_pile
+test_file
