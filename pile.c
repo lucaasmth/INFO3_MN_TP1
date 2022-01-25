@@ -4,54 +4,40 @@
 
 ppile_t creer_pile ()
 {
-  /*
-    a completer
-  */
-  return NULL ;
+  ppile_t pile = malloc(sizeof(pile_t)); // struct ?
+  pile->sommet = 0;
+  return pile;
 }
 
 int detruire_pile (ppile_t p)
 {
-  /*
-    a completer
-  */
-  return 0 ;
+  free(p);
+  return 1;
 }  
 
 int pile_vide (ppile_t p)
 {
-  /*
-     a completer
-  */
-
-  return 0 ;
+  return p->sommet == 0;
 }
 
 int pile_pleine (ppile_t p)
- {
-  /*
-     a completer
-  */
-
-  return 0 ;
+{
+  return p->sommet == MAX_PILE_SIZE;
 } 
 
 pnoeud_t depiler (ppile_t p)
 {
-  /*
-     a completer
-  */
-
-  return NULL ;
-
+  if (pile_vide(p))
+    return NULL;
+  p->sommet--;
+  return p->Tab[p->sommet];
 }
 
 int empiler (ppile_t p, pnoeud_t pn)
-  {
-  /*
-     a completer
-  */
-
-  return 0 ;
-
+{
+  if (p->sommet == MAX_PILE_SIZE)
+    return 0;
+  p->sommet++;
+  p->Tab[p->sommet-1] = pn;
+  return 1;
 }
