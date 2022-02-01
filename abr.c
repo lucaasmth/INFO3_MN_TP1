@@ -125,11 +125,18 @@ void afficher_arbre (Arbre_t a, int niveau)
 
 int hauteur_arbre_r (Arbre_t a)
 {
-  /*
-    a completer
-  */
+ if (a == NULL){    //si a est l'arbre vide sa hauteur vaut -1
+  return -1 ;
+ }
+ 
+ if (feuille(a->fdroite) && feuille(a->fdroite)){ //si a est une feuille on ajoute 1 à sa hauteur
+  return 1;
+ }
   
-  return 0 ;
+  else {    // sinon on incrémente la hauteur de 1 et on calcule le max de la hauteur des sous arbres
+    return (1 + max(hauteur_arbre_r(a->fgauche), hauteur_arbre_r(a->fdroite)));
+  }  
+
 }
 
 int hauteur_arbre_nr (Arbre_t a)
@@ -144,6 +151,23 @@ int hauteur_arbre_nr (Arbre_t a)
 
 void parcourir_arbre_largeur (Arbre_t a)
 {
+  file f = creer_file();
+  enfiler(a);
+  while(f != NULL)
+  {
+    Arbre_t a = defiler(f);
+    Traiter(a);
+
+    if (f.fgauche != NULL)
+    {
+      enfiler(f.fgauche);
+    }
+    if (f.fdroite != NULL)
+    {
+      enfiler(f.fdroite);
+    }
+  }
+
   /*
     a completer
     Utiliser une file, voir cours
