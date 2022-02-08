@@ -7,6 +7,7 @@
 
 
 #define max(a,b) ((a)>(b)?(a):(b))
+#define min(a,b) ((a)<(b)?(a):(b))
 
 
 int feuille (Arbre_t a)
@@ -201,11 +202,14 @@ int nombre_cles_arbre_nr (Arbre_t a)
 
 int trouver_cle_min (Arbre_t a)
 {
-  /*
-    a completer
-  */
-
-  return 0 ; 
+  int out = a->cle;
+  if(a->fgauche != NULL) {
+    out = min(out, trouver_cle_min(a->fgauche));
+  }
+  if(a->fdroite != NULL) {
+    out = min(out, trouver_cle_min(a->fdroite));
+  }
+  return out; 
 }
 
  
