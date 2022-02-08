@@ -217,11 +217,25 @@ int nombre_cles_arbre_r (Arbre_t a)
 
 int nombre_cles_arbre_nr (Arbre_t a)
 {
-  /*
-    a completer
-  */
-  
-  return 0 ;
+  int count = 0;
+  pfile_t f = creer_file();
+  enfiler(f, a);
+  while(f != NULL)
+  {
+    Arbre_t a = defiler(f);
+    count++;
+
+    if (file_vide(f))
+    {
+      enfiler(f, a->fgauche);
+    }
+    if (file_vide(f))
+    {
+      enfiler(f, a->fdroite);
+    }
+
+  }
+  return count;
 }
 
 int trouver_cle_min (Arbre_t a)
