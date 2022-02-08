@@ -7,6 +7,7 @@
 
 
 #define max(a,b) ((a)>(b)?(a):(b))
+#define min(a,b) ((a)<(b)?(a):(b))
 
 
 int feuille (Arbre_t a)
@@ -188,11 +189,14 @@ void afficher_nombre_noeuds_par_niveau (Arbre_t a)
 
 int nombre_cles_arbre_r (Arbre_t a)
 {
-  /*
-    a completer
-  */
-  
-  return 0 ;
+  int out = 1;
+  if(a->fgauche != NULL) {
+    out += nombre_cles_arbre_r(a->fgauche);
+  }
+  if(a->fdroite != NULL) {
+    out += nombre_cles_arbre_r(a->fdroite);
+  }
+  return out; 
 }
 
 int nombre_cles_arbre_nr (Arbre_t a)
@@ -206,11 +210,14 @@ int nombre_cles_arbre_nr (Arbre_t a)
 
 int trouver_cle_min (Arbre_t a)
 {
-  /*
-    a completer
-  */
-
-  return 0 ; 
+  int out = a->cle;
+  if(a->fgauche != NULL) {
+    out = min(out, trouver_cle_min(a->fgauche));
+  }
+  if(a->fdroite != NULL) {
+    out = min(out, trouver_cle_min(a->fdroite));
+  }
+  return out; 
 }
 
  
