@@ -152,28 +152,23 @@ int hauteur_arbre_nr (Arbre_t a)
 
 void parcourir_arbre_largeur (Arbre_t a)
 {
-  /*file f = creer_file();
-  enfiler(a);
+  pfile_t f = creer_file();
+  enfiler(f, a);
   while(f != NULL)
   {
     Arbre_t a = defiler(f);
-    Traiter(a);
+    printf("%i \n", a->cle);
 
-    if (f.fgauche != NULL)
+    if (file_vide(f))
     {
-      enfiler(f.fgauche);
+      enfiler(f, a->fgauche);
     }
-    if (f.fdroite != NULL)
+    if (file_vide(f))
     {
-      enfiler(f.fdroite);
+      enfiler(f, a->fdroite);
     }
+
   }
-
-  /*
-    a completer
-    Utiliser une file, voir cours
-  */
-
   return ;
 }
 
