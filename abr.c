@@ -151,23 +151,28 @@ int hauteur_arbre_nr (Arbre_t a)
 
 void parcourir_arbre_largeur (Arbre_t a)
 {
-  pfile_t f = creer_file();
-  enfiler(f, a);
+  /*file f = creer_file();
+  enfiler(a);
   while(f != NULL)
   {
     Arbre_t a = defiler(f);
-    printf("%i \n", a->cle);
+    Traiter(a);
 
-    if (file_vide(f))
+    if (f.fgauche != NULL)
     {
-      enfiler(f, a->fgauche);
+      enfiler(f.fgauche);
     }
-    if (file_vide(f))
+    if (f.fdroite != NULL)
     {
-      enfiler(f, a->fdroite);
+      enfiler(f.fdroite);
     }
-
   }
+
+  /*
+    a completer
+    Utiliser une file, voir cours
+  */
+
   return ;
 }
 
@@ -230,21 +235,43 @@ void imprimer_liste_cle_triee_nr (Arbre_t a)
   return ;
 }
 
+//Un arbre binaire est plein si chaque nœud a 0 ou 2 enfants.
 
 int arbre_plein (Arbre_t a)
 {
-  /*
-    a completer
-  */
+  if (feuille(a)) 
+    return 1;
+
+  if (a->fdroite != NULL){
+    if (a->fgauche == NULL){
+      return 0;
+    }
+    if (!arbre_plein(a->fdroite))
+      return 0;
+  }
+
+  if (a->fgauche != NULL){
+    if (a->fdroite == NULL){
+      return 0;
+    }
+    if (!arbre_plein(a->fgauche))
+      return 0;
+  }
+
+  return 1;
+} 
   
-  return 0 ;
-}
+
+/*
+Un arbre binaire parfait est un arbre binaire strict dans lequel toutes les feuilles (nœuds n'ayant aucun fils) 
+sont à la même distance de la racine (c'est-à-dire à la même profondeur). Il s'agit d'un arbre dont tous les 
+niveaux sont remplis : où tous les noeuds internes ont deux fils et où tous les noeuds externes ont la même hauteur.
+*/
 
 int arbre_parfait (Arbre_t a)
 {
-  /*
-    a completer
-  */
+
+
   
   return 0 ;
 }
