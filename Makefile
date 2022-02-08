@@ -18,11 +18,11 @@ test_file.o: test_file.c abr.h
 test_abr.o: test_abr.c abr.h
 	gcc -Wall -c test_abr.c
 
-test_pile: test_pile.o pile.o abr.o
-	gcc -o test_pile abr.o pile.o test_pile.o
+test_pile: test_pile.o pile.o
+	gcc -o test_pile pile.o test_pile.o
 
-test_file: test_file.o file.o abr.o
-	gcc -g -o test_file abr.o file.o test_file.o
+test_file: test_file.o file.o
+	gcc -g -o test_file file.o test_file.o
 
 test_abr: test_abr.o pile.o file.o abr.o
 	gcc -o test_abr abr.o pile.o file.o test_abr.o
