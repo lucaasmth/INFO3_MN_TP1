@@ -174,10 +174,31 @@ void parcourir_arbre_largeur (Arbre_t a)
 
 void afficher_nombre_noeuds_par_niveau (Arbre_t a)
 {
-  /*
-    a completer
-  */
+  pfile_t file = creer_file();
+  pfile_t temp = creer_file();
+  enfiler(file, a);
+  int niveau = 0;
+  while (!file_vide(file))
+  {
+    int count = 0;
+    while (!file_vide(file))
+    {
+      Arbre_t fd, fg;
+      Arbre_t noeud = defiler(file);
+      fg = noeud->fgauche;
+      fd = noeud->fdroite;
+      if (fg != NULL)
+        enfiler(temp, fg);
+      if (fd != NULL)
+        enfiler(temp, fd);
+      count++;
+    }
+    while (!file_vide(temp))
+      enfiler(file, defiler(temp));
 
+    printf("Niveau %i > %i noeuds\n", niveau, count);
+    niveau++;
+  }
   return ;
 }
 
