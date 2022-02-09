@@ -178,15 +178,14 @@ void parcourir_arbre_largeur (Arbre_t a)
     Arbre_t a = defiler(f);
     printf("%i \n", a->cle);
 
-    if (file_vide(f))
+    if (a->fgauche != NULL)
     {
       enfiler(f, a->fgauche);
     }
-    if (file_vide(f))
+    if (a->fdroite != NULL)
     {
       enfiler(f, a->fdroite);
     }
-
   }
   return ;
 }
@@ -252,7 +251,6 @@ int nombre_cles_arbre_nr (Arbre_t a)
     {
       enfiler(f, a->fdroite);
     }
-
   }
   return count;
 }
@@ -295,26 +293,26 @@ void imprimer_liste_cle_triee_nr (Arbre_t a)
 
 int arbre_plein (Arbre_t a)
 {
-  if (feuille(a)) 
-    return 1;
-
-  if (a->fdroite != NULL){
-    if (a->fgauche == NULL){
-      return 0;
+    pfile_t f = creer_file();
+  enfiler(f, a);
+  while(f != NULL)
+  {
+    Arbre_t a = defiler(f);
+    if (a->fdroite != NULL && a->fgauche != NULL)
+    {
+      /* code */
     }
-    if (!arbre_plein(a->fdroite))
-      return 0;
-  }
-
-  if (a->fgauche != NULL){
-    if (a->fdroite == NULL){
-      return 0;
+    
+    if (file_vide(f))
+    {
+      enfiler(f, a->fgauche);
     }
-    if (!arbre_plein(a->fgauche))
-      return 0;
+    if (file_vide(f))
+    {
+      enfiler(f, a->fdroite);
+    }
   }
-
-  return 1;
+  return ;
 } 
   
 
@@ -326,10 +324,7 @@ niveaux sont remplis : où tous les noeuds internes ont deux fils et où tous le
 
 int arbre_parfait (Arbre_t a)
 {
-
-
   
-  return 0 ;
 }
 
 
