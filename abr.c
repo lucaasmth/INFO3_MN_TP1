@@ -178,11 +178,11 @@ void parcourir_arbre_largeur (Arbre_t a)
     Arbre_t a = defiler(f);
     printf("%i \n", a->cle);
 
-    if (file_vide(f))
+    if (a->fgauche != NULL)
     {
       enfiler(f, a->fgauche);
     }
-    if (file_vide(f))
+    if (a->fdroite != NULL)
     {
       enfiler(f, a->fdroite);
     }
@@ -311,7 +311,6 @@ int arbre_plein (Arbre_t a)
     if (!arbre_plein(a->fgauche))
       return 0;
   }
-
   return 1;
 } 
   
