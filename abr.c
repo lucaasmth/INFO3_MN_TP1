@@ -142,11 +142,30 @@ int hauteur_arbre_r (Arbre_t a)
 
 int hauteur_arbre_nr (Arbre_t a)
 {
-  /*
-    a completer
-  */
-  
-  return 0 ;
+  pfile_t file = creer_file();
+  pfile_t temp = creer_file();
+  enfiler(file, a);
+  int niveau = -1;
+  while (!file_vide(file))
+  {
+    int count = 0;
+    while (!file_vide(file))
+    {
+      Arbre_t fd, fg;
+      Arbre_t noeud = defiler(file);
+      fg = noeud->fgauche;
+      fd = noeud->fdroite;
+      if (fg != NULL)
+        enfiler(temp, fg);
+      if (fd != NULL)
+        enfiler(temp, fd);
+      count++;
+    }
+    while (!file_vide(temp))
+      enfiler(file, defiler(temp));
+    niveau++;
+  }
+  return niveau;
 }
 
 
@@ -159,15 +178,14 @@ void parcourir_arbre_largeur (Arbre_t a)
     Arbre_t a = defiler(f);
     printf("%i \n", a->cle);
 
-    if (file_vide(f))
+    if (a->fgauche != NULL)
     {
       enfiler(f, a->fgauche);
     }
-    if (file_vide(f))
+    if (a->fdroite != NULL)
     {
       enfiler(f, a->fdroite);
     }
-
   }
   return ;
 }
@@ -217,11 +235,24 @@ int nombre_cles_arbre_r (Arbre_t a)
 
 int nombre_cles_arbre_nr (Arbre_t a)
 {
-  /*
-    a completer
-  */
-  
-  return 0 ;
+  int count = 0;
+  pfile_t f = creer_file();
+  enfiler(f, a);
+  while(f != NULL)
+  {
+    Arbre_t a = defiler(f);
+    count++;
+
+    if (file_vide(f))
+    {
+      enfiler(f, a->fgauche);
+    }
+    if (file_vide(f))
+    {
+      enfiler(f, a->fdroite);
+    }
+  }
+  return count;
 }
 
 int trouver_cle_min (Arbre_t a)
@@ -280,7 +311,6 @@ int arbre_plein (Arbre_t a)
     if (!arbre_plein(a->fgauche))
       return 0;
   }
-
   return 1;
 } 
   
@@ -293,10 +323,7 @@ niveaux sont remplis : où tous les noeuds internes ont deux fils et où tous le
 
 int arbre_parfait (Arbre_t a)
 {
-
-
   
-  return 0 ;
 }
 
 
