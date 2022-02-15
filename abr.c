@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 
 #include "abr.h"
 #include "pile.h"
@@ -323,7 +324,46 @@ niveaux sont remplis : où tous les noeuds internes ont deux fils et où tous le
 
 int arbre_parfait (Arbre_t a)
 {
-  
+  if (!arbre_plein(a))
+    return 0;
+  int h = hauteur_arbre_r(a);
+
+//---------------------------------
+  pfile_t file = creer_file();
+  pfile_t temp = creer_file();
+  enfiler(file, a);
+  int niveau = 0;
+  int nbfeuille;
+  while (!file_vide(file))
+  {
+    int count = 0;
+    while (!file_vide(file))
+    {
+      Arbre_t fd, fg;
+      Arbre_t noeud = defiler(file);
+      fg = noeud->fgauche;
+      fd = noeud->fdroite;
+      if (fg != NULL)
+        enfiler(temp, fg);
+      if (fd != NULL)
+        enfiler(temp, fd);
+      count++;
+    }
+    while (!file_vide(temp))
+      enfiler(file, defiler(temp));
+     if (niveau == h){
+      nbfeuille = count;
+      }
+    //printf("Niveau %i > %i noeuds\n", niveau, count);
+    niveau++;
+  }
+//----------------------------------- 
+  int nbFeuille = (int) pow (2,h);
+  printf ("attendue %i \n", nbFeuille);
+  printf ("resultat %i \n", nbfeuille);
+  if (nbfeuille != nbFeuille)
+    return 0;
+  return 1;
 }
 
 

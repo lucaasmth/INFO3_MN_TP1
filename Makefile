@@ -25,7 +25,7 @@ test_file: test_file.o file.o
 	gcc -g -o test_file file.o test_file.o
 
 test_abr: test_abr.o pile.o file.o abr.o
-	gcc -o test_abr abr.o pile.o file.o test_abr.o
+	gcc -o test_abr abr.o pile.o file.o test_abr.o -lm
 
 clean:
 	rm -f *.o *~ test_pile test_abr
