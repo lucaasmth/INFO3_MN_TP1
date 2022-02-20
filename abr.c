@@ -270,13 +270,21 @@ int trouver_cle_min (Arbre_t a)
 
  
 
+void AuxCleTriees(Arbre_t a, int cle)
+{
+  int nouvelleCle = rechercher_cle_sup_arbre(a, cle);
+  if (nouvelleCle == NULL)
+  {
+    printf("\n\n");
+    return;
+  }
+  printf("%i > ", nouvelleCle);
+  AuxCleTriees(a, nouvelleCle);
+}
 void imprimer_liste_cle_triee_r (Arbre_t a)
 {
-  /*
-    a completer
-  */
-
-  
+  int cleMin = trouver_cle_min(a);
+  AuxCleTriees(a, cleMin);  
   return ;
 }
 
