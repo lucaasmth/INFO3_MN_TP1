@@ -417,11 +417,32 @@ Arbre_t rechercher_cle_inf_arbre (Arbre_t a, int valeur)
 
 Arbre_t detruire_cle_arbre (Arbre_t a, int cle)
 {
-  /*
-    a completer
-  */
+  if (a == NULL)
+          return a;
 
-  return NULL ;
+      if (cle < a->cle)
+          a->fgauche = detruire_cle_arbre(a->fgauche, cle);
+
+      else if (cle > a->cle)
+          a->fdroite = detruire_cle_arbre(a->fdroite, cle);
+      else {
+          if (a->fgauche == NULL) {
+              Arbre_t temp = a->fdroite;
+              free(a);
+              return temp;
+          }
+          else if (a->fdroite == NULL) {
+              Arbre_t temp = a->fgauche;
+              free(a);
+              return temp;
+          }
+
+          Arbre_t temp = rechercher_cle_arbre(a->fdroite, trouver_cle_min(a->fdroite));
+
+          a->cle = temp->cle;
+          a->fdroite = detruire_cle_arbre(a->fdroite, temp->cle);
+      }
+      return a;
 }
 
 
