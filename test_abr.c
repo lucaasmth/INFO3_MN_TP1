@@ -144,10 +144,11 @@ int main (int argc, char**argv)
     printf("\n");
   }*/
 
-      /*tests fonctions rechercher clef sup et inf arbre
+      /*      A REFAIRE :(
+      tests fonctions rechercher clef sup et inf arbre
       résultats attendus :
       INF
-      -arbre 1 : 1->2, 4->6
+      -arbre 1 : 1->2, 4->5
       -arbre 2 : 2->3, 12->14
       -arbre 3 : 2->5, 14->15
       -arbre 4 : 1->3, 3->4, 9->12
@@ -159,33 +160,33 @@ int main (int argc, char**argv)
 
   */
 
- /* printf (" sup de a pour %d: %d \n", 1,rechercher_cle_sup_arbre (a, 1) );
-  printf (" sup de a pour %d: %d \n", 4,rechercher_cle_sup_arbre (a, 4) );
+  printf (" sup de a pour %d: %d \n", 1,rechercher_cle_sup_arbre (a, 1)->cle );
+  printf (" sup de a pour %d: %d \n", 4,rechercher_cle_sup_arbre (a, 4)->cle );
   printf("\n");
-  printf (" sup de b pour %d: %d \n", 2,rechercher_cle_sup_arbre (a, 2) );
-  printf (" sup de b pour %d: %d \n", 12,rechercher_cle_sup_arbre (a, 12) );
+  printf (" sup de b pour %d: %d \n", 2,rechercher_cle_sup_arbre (b, 2)->cle );
+  printf (" sup de b pour %d: %d \n", 12,rechercher_cle_sup_arbre (b, 12)->cle );
   printf("\n");
-  printf (" sup de c pour %d: %d \n", 2,rechercher_cle_sup_arbre (a, 2) );
-  printf (" sup de c pour %d: %d \n", 14,rechercher_cle_sup_arbre (a, 14) );
+  printf (" sup de c pour %d: %d \n", 2,rechercher_cle_sup_arbre (c, 2)->cle );
+  printf (" sup de c pour %d: %d \n", 14,rechercher_cle_sup_arbre (c, 14)->cle );
   printf("\n");
-  printf (" sup de d pour %d: %d \n", 1,rechercher_cle_sup_arbre (a, 1) );
-  printf (" sup de d pour %d: %d \n", 3,rechercher_cle_sup_arbre (a, 3) );
-  printf (" sup de d pour %d: %d \n", 9,rechercher_cle_sup_arbre (a, 9) );
+  printf (" sup de d pour %d: %d \n", 1,rechercher_cle_sup_arbre (d, 1)->cle );
+  printf (" sup de d pour %d: %d \n", 3,rechercher_cle_sup_arbre (d, 3)->cle );
+  printf (" sup de d pour %d: %d \n", 9,rechercher_cle_sup_arbre (d, 9)->cle );
   printf("\n");
 
-  printf (" inf de a pour %d: %d \n", 2,rechercher_cle_inf_arbre (a, 2) );
-  printf (" inf de a pour %d: %d \n", 6,rechercher_cle_inf_arbre (a, 6) );
+  printf (" inf de a pour %d: %d \n", 2,rechercher_cle_inf_arbre (a, 2)->cle );
+  printf (" inf de a pour %d: %d \n", 6,rechercher_cle_inf_arbre (a, 6)->cle );
   printf("\n");
-  printf (" inf de b pour %d: %d \n", 3,rechercher_cle_inf_arbre (a, 3) );
-  printf (" inf de b pour %d: %d \n", 14,rechercher_cle_inf_arbre (a, 14) );
+  printf (" inf de b pour %d: %d \n", 3,rechercher_cle_inf_arbre (b, 3)->cle );
+  printf (" inf de b pour %d: %d \n", 14,rechercher_cle_inf_arbre (b, 14)->cle );
   printf("\n");
-  printf (" inf de c pour %d: %d \n", 5,rechercher_cle_inf_arbre (a, 5) );
-  printf (" inf de c pour %d: %d \n", 15,rechercher_cle_inf_arbre (a, 15) );
+  printf (" inf de c pour %d: %d \n", 5,rechercher_cle_inf_arbre (c, 5)->cle );
+  printf (" inf de c pour %d: %d \n", 15,rechercher_cle_inf_arbre (c, 15)->cle );
   printf("\n");
-  printf (" inf de d pour %d: %d \n", 3,rechercher_cle_inf_arbre (a, 3) );
-  printf (" inf de d pour %d: %d \n", 4,rechercher_cle_inf_arbre (a, 4) );
-  printf (" inf de d pour %d: %d \n", 12,rechercher_cle_inf_arbre (a, 12) );
-  printf("\n");*/
+  printf (" inf de d pour %d: %d \n", 3,rechercher_cle_inf_arbre (d, 3)->cle );
+  printf (" inf de d pour %d: %d \n", 4,rechercher_cle_inf_arbre (d, 4)->cle );
+  printf (" inf de d pour %d: %d \n", 12,rechercher_cle_inf_arbre (d, 12)->cle);
+  printf("\n");
 
 }
 
