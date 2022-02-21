@@ -510,3 +510,17 @@ Arbre_AVL_t union_deux_arbres (Arbre_AVL_t a1, Arbre_AVL_t a2)
   }
    return res;
 }
+
+Arbre_AVL_t rotation_gauche (Arbre_AVL_t a) {
+    Arbre_AVL_t b = a->fdroite;
+    a->fdroite = b->fgauche;
+    b->fgauche = a;
+    return b;
+}
+
+Arbre_AVL_t rotation_gauche (Arbre_AVL_t b) {
+    Arbre_AVL_t a = b->fgauche;
+    b->fgauche = a->fdroite;
+    a->fdroite = b;
+    return a;
+}
