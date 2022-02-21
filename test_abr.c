@@ -17,8 +17,9 @@ int main (int argc, char**argv)
   
   afficher_arbre (a,0) ;
 
-  /*
-     appeler les fonctions que vous
-     avez implementees
-  */
+  
+  printf("trouver_cle_min: %d\n", trouver_cle_min(a));
+  printf("nombre_cles_arbre_r: %d\n", nombre_cles_arbre_r(a));
+  printf("rechercher_cle_sup_arbre(7): %d\n", rechercher_cle_sup_arbre(a, 7)->cle);
+  printf("rechercher_cle_inf_arbre(7): %d\n", rechercher_cle_inf_arbre(a, 7)->cle);
 }
