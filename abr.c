@@ -174,7 +174,7 @@ void parcourir_arbre_largeur (Arbre_t a)
 {
   pfile_t f = creer_file();
   enfiler(f, a);
-  while(f != NULL)
+  while(!file_vide(f))
   {
     Arbre_t a = defiler(f);
     printf("%i \n", a->cle);
@@ -239,7 +239,7 @@ int nombre_cles_arbre_nr (Arbre_t a)
   int count = 0;
   pfile_t f = creer_file();
   enfiler(f, a);
-  while(f != NULL)
+  while(!file_vide(f))
   {
     Arbre_t a = defiler(f);
     count++;
@@ -449,7 +449,7 @@ Arbre_t intersection_deux_arbres (Arbre_t a1, Arbre_t a2)
   Arbre_t res = (Arbre_t) malloc (sizeof(noeud_t)) ;
   pfile_t f = creer_file();
   enfiler(f, a1);
-  while(f != NULL)
+  while(!file_vide(f))
   {
     Arbre_t a = defiler(f);
 
@@ -477,7 +477,7 @@ Arbre_t union_deux_arbres (Arbre_t a1, Arbre_t a2)
 
   pfile_t f = creer_file();
   enfiler(f, a1);
-  while(f != NULL)
+  while(!file_vide(f))
   {
     Arbre_t a = defiler(f);
     ajouter_cle(res, a->cle);
@@ -491,7 +491,7 @@ Arbre_t union_deux_arbres (Arbre_t a1, Arbre_t a2)
     }
   }
   enfiler(f, a2);
-  while(f != NULL)
+  while(!file_vide(f))
   {
     Arbre_t a = defiler(f);
     ajouter_cle(res, a->cle);
