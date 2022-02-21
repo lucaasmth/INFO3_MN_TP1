@@ -31,7 +31,7 @@ test_file: test_file.o file.o
 	gcc -g -o test_file file.o test_file.o
 
 test_abr: test_abr.o pile.o file.o abr.o
-	gcc -o test_abr abr.o pile.o file.o test_abr.o
+	gcc -o test_abr abr.o pile.o file.o test_abr.o -lm
 
 test_avl: test_avl.o pile.o file.o avl.o
 	gcc -o test_avl avl.o pile.o file.o test_avl.o

@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 
 #include "abr.h"
 #include "pile.h"
@@ -268,24 +269,39 @@ int trouver_cle_min (Arbre_t a)
 }
 
  
+//Fonction auxiliaire pour la fonction "imprimer_liste_cle_triee_r"
+void AuxCleTriees(Arbre_t a, int cle)
+{
+  printf("> %i ", cle);
 
+  Arbre_t nouvelleCle = rechercher_cle_sup_arbre(a, cle);
+  if (nouvelleCle == NULL)
+  {
+    printf("\n\n");
+    return;
+  }
+  AuxCleTriees(a, nouvelleCle->cle);
+}
 void imprimer_liste_cle_triee_r (Arbre_t a)
 {
-  /*
-    a completer
-  */
-
-  
+  int cleMin = trouver_cle_min(a);
+  AuxCleTriees(a, cleMin);  
   return ;
 }
 
 void imprimer_liste_cle_triee_nr (Arbre_t a)
 {
-  /*
-    a completer
-  */
-
-  
+  int cle = trouver_cle_min(a);
+  Arbre_t NouvelleCle;
+  while (1)
+  {
+    printf("> %i ", cle);
+    NouvelleCle = rechercher_cle_sup_arbre(a, cle);
+    if (NouvelleCle == NULL)
+      break;
+    cle = NouvelleCle->cle;
+  }
+  printf("\n\n");
   return ;
 }
 
@@ -323,7 +339,46 @@ niveaux sont remplis : où tous les noeuds internes ont deux fils et où tous le
 
 int arbre_parfait (Arbre_t a)
 {
-  
+  if (!arbre_plein(a))
+    return 0;
+  int h = hauteur_arbre_r(a);
+
+//---------------------------------
+  pfile_t file = creer_file();
+  pfile_t temp = creer_file();
+  enfiler(file, a);
+  int niveau = 0;
+  int nbfeuille;
+  while (!file_vide(file))
+  {
+    int count = 0;
+    while (!file_vide(file))
+    {
+      Arbre_t fd, fg;
+      Arbre_t noeud = defiler(file);
+      fg = noeud->fgauche;
+      fd = noeud->fdroite;
+      if (fg != NULL)
+        enfiler(temp, fg);
+      if (fd != NULL)
+        enfiler(temp, fd);
+      count++;
+    }
+    while (!file_vide(temp))
+      enfiler(file, defiler(temp));
+     if (niveau == h){
+      nbfeuille = count;
+      }
+    //printf("Niveau %i > %i noeuds\n", niveau, count);
+    niveau++;
+  }
+//----------------------------------- 
+  int nbFeuille = (int) pow (2,h);
+  printf ("attendue %i \n", nbFeuille);
+  printf ("resultat %i \n", nbfeuille);
+  if (nbfeuille != nbFeuille)
+    return 0;
+  return 1;
 }
 
 
@@ -362,31 +417,97 @@ Arbre_t rechercher_cle_inf_arbre (Arbre_t a, int valeur)
 
 Arbre_t detruire_cle_arbre (Arbre_t a, int cle)
 {
-  /*
-    a completer
-  */
+  if (a == NULL)
+          return a;
 
-  return NULL ;
+      if (cle < a->cle)
+          a->fgauche = detruire_cle_arbre(a->fgauche, cle);
+
+      else if (cle > a->cle)
+          a->fdroite = detruire_cle_arbre(a->fdroite, cle);
+      else {
+          if (a->fgauche == NULL) {
+              Arbre_t temp = a->fdroite;
+              free(a);
+              return temp;
+          }
+          else if (a->fdroite == NULL) {
+              Arbre_t temp = a->fgauche;
+              free(a);
+              return temp;
+          }
+
+          Arbre_t temp = rechercher_cle_arbre(a->fdroite, trouver_cle_min(a->fdroite));
+
+          a->cle = temp->cle;
+          a->fdroite = detruire_cle_arbre(a->fdroite, temp->cle);
+      }
+      return a;
 }
 
 
 
 Arbre_t intersection_deux_arbres (Arbre_t a1, Arbre_t a2)
 {
-  /*
-    a completer
-  */
+  Arbre_t res = (Arbre_t) malloc (sizeof(noeud_t)) ;
+  pfile_t f = creer_file();
+  enfiler(f, a1);
+  while(f != NULL)
+  {
+    Arbre_t a = defiler(f);
 
-  return NULL ;
-  
+    Arbre_t noeudCommun = rechercher_cle_arbre(a2, a->cle);
+    if (noeudCommun != NULL)
+      ajouter_cle(res, a->cle);
+
+    
+    if (a->fgauche != NULL)
+    {
+      enfiler(f, a->fgauche);
+    }
+    if (a->fdroite != NULL)
+    {
+      enfiler(f, a->fdroite);
+    }
+  }
+  return res;
 }
 
 Arbre_t union_deux_arbres (Arbre_t a1, Arbre_t a2)
 {
-  /*
-    a completer
-  */
+  //Créer un nouvel arbre
+  Arbre_t res = (Arbre_t) malloc (sizeof(noeud_t));
 
-  return NULL ;
+  pfile_t f = creer_file();
+  enfiler(f, a1);
+  while(f != NULL)
+  {
+    Arbre_t a = defiler(f);
+    ajouter_cle(res, a->cle);
+    if (a->fgauche != NULL)
+    {
+      enfiler(f, a->fgauche);
+    }
+    if (a->fdroite != NULL)
+    {
+      enfiler(f, a->fdroite);
+    }
+  }
+  enfiler(f, a2);
+  while(f != NULL)
+  {
+    Arbre_t a = defiler(f);
+    ajouter_cle(res, a->cle);
+
+    if (a->fgauche != NULL)
+    {
+      enfiler(f, a2->fgauche);
+    }
+    if (a->fdroite != NULL)
+    {
+      enfiler(f, a->fdroite);
+    }
+  }
+   return res;
 }
 
