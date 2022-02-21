@@ -518,7 +518,7 @@ Arbre_AVL_t rotation_gauche (Arbre_AVL_t a) {
     return b;
 }
 
-Arbre_AVL_t rotation_gauche (Arbre_AVL_t b) {
+Arbre_AVL_t rotation_droite (Arbre_AVL_t b) {
     Arbre_AVL_t a = b->fgauche;
     b->fgauche = a->fdroite;
     a->fdroite = b;
