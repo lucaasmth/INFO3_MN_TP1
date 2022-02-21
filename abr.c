@@ -244,11 +244,11 @@ int nombre_cles_arbre_nr (Arbre_t a)
     Arbre_t a = defiler(f);
     count++;
 
-    if (file_vide(f))
+    if (a->fgauche != NULL)
     {
       enfiler(f, a->fgauche);
     }
-    if (file_vide(f))
+    if (a->fdroite != NULL)
     {
       enfiler(f, a->fdroite);
     }
