@@ -369,13 +369,10 @@ int arbre_parfait (Arbre_t a)
      if (niveau == h){
       nbfeuille = count;
       }
-    //printf("Niveau %i > %i noeuds\n", niveau, count);
     niveau++;
   }
 //----------------------------------- 
   int nbFeuille = (int) pow (2,h);
-  printf ("attendue %i \n", nbFeuille);
-  printf ("resultat %i \n", nbfeuille);
   if (nbfeuille != nbFeuille)
     return 0;
   return 1;
