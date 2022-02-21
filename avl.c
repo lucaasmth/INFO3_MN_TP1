@@ -534,3 +534,44 @@ Arbre_AVL_t double_rotation_droite (Arbre_AVL_t a) {
     a->fgauche= rotation_gauche(a->fgauche);
     return rotation_droite(a);
 }
+
+
+int balancer(Arbre_AVL_t a)
+{
+    int res = 0;
+    if(a!=NULL)
+    {
+        Arbre_AVL_t filsDroit = a->fdroite;
+        int hauteurDroit;
+        if (filsDroit == NULL)
+          hauteurDroit = 0;
+        else 
+          hauteurDroit = hauteur_arbre_r(filsDroit);
+        
+
+        Arbre_AVL_t filsGauche = a->fgauche;
+        int hauteurGauche;
+        if (filsGauche == NULL)
+          hauteurGauche = 0;
+        else
+          hauteurGauche = hauteur_arbre_r(filsGauche);
+
+        res = hauteurGauche - hauteurDroit;
+        a->balance = res;
+    }
+}
+
+Arbre_AVL_t reequilibrer (Arbre_AVL_t a) {
+    if (a != NULL)
+    {
+        while(a->balance < -1 || a->balance > 1)
+        {
+            a->fgauche = reequilibre(a->fgauche);
+            a->fdroite = reequilibre(a->fdroite);
+            if (a->balance <= -2)
+                a = rotation_gauche(a);
+            if (a->balance >= 2)
+                a = rotation_droite(a);
+            balancer(a);
+        }
+}

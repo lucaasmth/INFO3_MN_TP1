@@ -54,3 +54,5 @@ Arbre_AVL_t rotation_droite (Arbre_AVL_t a);
 Arbre_AVL_t double_rotation_gauche (Arbre_AVL_t a);
 
 Arbre_AVL_t double_rotation_droite (Arbre_AVL_t a);
+
+Arbre_AVL_t reequilibrer (Arbre_AVL_t a);
