@@ -269,7 +269,7 @@ int trouver_cle_min (Arbre_t a)
 }
 
  
-
+//Fonction auxiliaire pour la fonction "imprimer_liste_cle_triee_r"
 void AuxCleTriees(Arbre_t a, int cle)
 {
   printf("> %i ", cle);
@@ -449,20 +449,65 @@ Arbre_t detruire_cle_arbre (Arbre_t a, int cle)
 
 Arbre_t intersection_deux_arbres (Arbre_t a1, Arbre_t a2)
 {
-  /*
-    a completer
-  */
+  Arbre_t res = (Arbre_t) malloc (sizeof(noeud_t)) ;
+  pfile_t f = creer_file();
+  enfiler(f, a1);
+  while(f != NULL)
+  {
+    Arbre_t a = defiler(f);
 
-  return NULL ;
-  
+    Arbre_t noeudCommun = rechercher_cle_arbre(a2, a->cle);
+    if (noeudCommun != NULL)
+      ajouter_cle(res, a->cle);
+
+    
+    if (a->fgauche != NULL)
+    {
+      enfiler(f, a->fgauche);
+    }
+    if (a->fdroite != NULL)
+    {
+      enfiler(f, a->fdroite);
+    }
+  }
+  return res;
 }
 
 Arbre_t union_deux_arbres (Arbre_t a1, Arbre_t a2)
 {
-  /*
-    a completer
-  */
+  //Créer un nouvel arbre
+  Arbre_t res = (Arbre_t) malloc (sizeof(noeud_t));
 
-  return NULL ;
+  pfile_t f = creer_file();
+  enfiler(f, a1);
+  while(f != NULL)
+  {
+    Arbre_t a = defiler(f);
+    ajouter_cle(res, a->cle);
+    if (a->fgauche != NULL)
+    {
+      enfiler(f, a->fgauche);
+    }
+    if (a->fdroite != NULL)
+    {
+      enfiler(f, a->fdroite);
+    }
+  }
+  enfiler(f, a2);
+  while(f != NULL)
+  {
+    Arbre_t a = defiler(f);
+    ajouter_cle(res, a->cle);
+
+    if (a->fgauche != NULL)
+    {
+      enfiler(f, a2->fgauche);
+    }
+    if (a->fdroite != NULL)
+    {
+      enfiler(f, a->fdroite);
+    }
+  }
+   return res;
 }
 
