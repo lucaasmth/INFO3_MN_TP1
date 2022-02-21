@@ -524,3 +524,13 @@ Arbre_AVL_t rotation_droite (Arbre_AVL_t b) {
     a->fdroite = b;
     return a;
 }
+
+Arbre_AVL_t double_rotation_gauche (Arbre_AVL_t a) {
+    a->fdroite = rotation_droite(a->fdroite);
+    return rotation_gauche(a);
+}
+
+Arbre_AVL_t double_rotation_droite (Arbre_AVL_t a) {
+    a->fgauche= rotation_gauche(a->fgauche);
+    return rotation_droite(a);
+}
