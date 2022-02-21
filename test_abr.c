@@ -27,8 +27,8 @@ int main (int argc, char**argv)
   printf("arbre 3 : \n");
   afficher_arbre (c,0) ;
   printf("arbre 4 : \n");
-  afficher_arbre (d,0) ;*/
-
+  afficher_arbre (d,0) ;
+*/
   /*tests fonctions hauteur 
       résultats attendus :
       -arbre 1 : 4
@@ -53,13 +53,12 @@ int main (int argc, char**argv)
       -arbre 4 : 1,12,3,4,5,6,7,8,9
   */ 
 
- /*   for (int i = 1; i<argc; i++ ){
+/*    for (int i = 1; i<argc; i++ ){
       a = lire_arbre (argv[i]) ;
       printf("Arbre %i :\n", i);
       parcourir_arbre_largeur (a) ;
       printf("\n");
   }*/
-  //resultat correct mais segmentation fault à la fin de l'execution
 
   /*tests fonction noeuds par niveau 
       résultats attendus :
@@ -126,21 +125,19 @@ int main (int argc, char**argv)
 
      /*tests fonctions arbre plein et arbre parfait
       résultats attendus :
-      -arbre 1 : oui, non
+      -arbre 1 : non, non
       -arbre 2 : non, non
       -arbre 3 : oui, oui
       -arbre 4 : non, non
   */
 
-  // A FINIR ---------------------------------------
 /*     for (int i = 1; i<argc; i++ ){
     a = lire_arbre (argv[i]) ;
     
     arbre_parfait (a);
     printf("Arbre %i plein : %i \n", i, arbre_plein (a));
-    }
-/*
-    printf("Arbre %i parfait   :\n", i, arbre_parfait (a));
+
+    printf("Arbre %i parfait : %i\n", i, arbre_parfait (a));
     printf("\n");
   }*/
 
@@ -160,7 +157,7 @@ int main (int argc, char**argv)
 
   */
 
-  printf (" sup de a pour %d: %d \n", 1,rechercher_cle_sup_arbre (a, 1)->cle );
+  /*printf (" sup de a pour %d: %d \n", 1,rechercher_cle_sup_arbre (a, 1)->cle );
   printf (" sup de a pour %d: %d \n", 4,rechercher_cle_sup_arbre (a, 4)->cle );
   printf("\n");
   printf (" sup de b pour %d: %d \n", 2,rechercher_cle_sup_arbre (b, 2)->cle );
@@ -186,18 +183,18 @@ int main (int argc, char**argv)
   printf (" inf de d pour %d: %d \n", 3,rechercher_cle_inf_arbre (d, 3)->cle );
   printf (" inf de d pour %d: %d \n", 4,rechercher_cle_inf_arbre (d, 4)->cle );
   printf (" inf de d pour %d: %d \n", 12,rechercher_cle_inf_arbre (d, 12)->cle);
-  printf("\n");
+  printf("\n");*/
 
+     /*tests fonction detruire clef*/
+  
+/*  printf("Arbre a sans la clef 4\n");
+  afficher_arbre(detruire_cle_arbre (a,4),0);
+  printf("Arbre b sans la clef 15\n");
+  afficher_arbre(detruire_cle_arbre (b,15),0);
+  printf("Arbre c sans la clef 2\n");
+  afficher_arbre(detruire_cle_arbre (c,2),0);
+  printf("Arbre d sans la clef 6\n");
+  afficher_arbre(detruire_cle_arbre (d,6),0);
+*/
 }
 
-
- /*
-
-
-
-Arbre_t detruire_cle_arbre (Arbre_t a, int cle) ;
-
-Arbre_t intersection_deux_arbres (Arbre_t a1, Arbre_t a2) ;
-
-Arbre_t union_deux_arbres (Arbre_t a1, Arbre_t a2) ;
-*/
